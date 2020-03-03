@@ -68,13 +68,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <extensions>
-            <extension>
-                <groupId>io.packagecloud.maven.wagon</groupId>
-                <artifactId>maven-packagecloud-wagon</artifactId>
-                <version>0.0.4</version>
-            </extension>
-        </extensions>
     </build>
 
     <repositories>
@@ -84,14 +77,5 @@
             <url>http://repo.spring.io/release</url>
         </repository>
     </repositories>
-    <distributionManagement>
-        <repository>
-            <id>packagecloud-examplecorp</id>
-            <url>packagecloud+https://packagecloud.io/exampleCorp/core</url>
-        </repository>
-        <snapshotRepository>
-            <id>packagecloud-examplecorp</id>
-            <url>packagecloud+https://packagecloud.io/exampleCorp/core</url>
-        </snapshotRepository>
-    </distributionManagement>
+
 </project>
