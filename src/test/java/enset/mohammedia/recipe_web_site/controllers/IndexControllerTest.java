@@ -6,15 +6,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class IndexControllerTest {
 
@@ -43,7 +44,8 @@ class IndexControllerTest {
     @Test
     void index() {
         Recipe recipe=new Recipe();
-        List<Recipe> recipies = List.of(recipe);
+        List<Recipe> recipies = new ArrayList<>();
+        recipies.add(recipe);
         Mockito.when(recipeService.getAllRecipes()).thenReturn(recipies);
         String result= indexController.index(model);
         assertEquals("index",result);

@@ -8,10 +8,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.util.List;
-import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RecipeServiceImplTest {
 
@@ -30,7 +31,9 @@ class RecipeServiceImplTest {
     void getAllRecipes() {
 
         Recipe recipe=new Recipe();
-        Mockito.when(recipeRepository.findAll()).thenReturn(List.of(recipe));
+        List r=new ArrayList();
+        r.add(recipe);
+        Mockito.when(recipeRepository.findAll()).thenReturn(r);
 
         List<Recipe> result=recipeService.getAllRecipes();
 

@@ -2,6 +2,7 @@ package enset.mohammedia.recipe_web_site.entities;
 
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +11,7 @@ class CategoryTest {
 
     Category category;
 
-    @Before("")
+    @BeforeEach
     public void setUp(){
         category=new Category();
     }
