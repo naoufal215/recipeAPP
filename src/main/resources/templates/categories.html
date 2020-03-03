@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="htttp://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RECIPE WEB APP</title>
+</head>
+<body>
+<h1>RECIPE WEB APP</h1>
+<th:block th:each="categorie : ${categories}">
+    <tr>
+        <td th:text="${categorie.description}">...</td>
+    </tr>
+</th:block>
+</body>
+</html>
