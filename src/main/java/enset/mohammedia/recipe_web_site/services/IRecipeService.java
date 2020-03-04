@@ -7,4 +7,6 @@ import java.util.List;
 public interface IRecipeService {
 
     List<Recipe> getAllRecipes();
+
+    Recipe findById(Long id) throws Exception;
 }

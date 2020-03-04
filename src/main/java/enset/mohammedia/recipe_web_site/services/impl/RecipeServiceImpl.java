@@ -24,4 +24,9 @@ public class RecipeServiceImpl implements IRecipeService {
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
+
+    @Override
+    public Recipe findById(Long id) throws Exception {
+        return recipeRepository.findById(id).orElseThrow(()->new Exception("no recipe found"));
+    }
 }

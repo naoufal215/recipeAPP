@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="htttp://www.thymleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>RECIPE WEB APP</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.4.1-1/css/bootstrap.css">
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
+    <script src="/webjars/jquery/3.4.1/jquery.js"></script>
+    <script src="/webjars/bootstrap/4.4.1-1/js/bootstrap.js"></script>
+
 </head>
 <body>
-<h1 class="title">RECIPE WEB APP</h1>
+<h1 class="text-center">RECIPE WEB APP</h1>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -32,11 +27,15 @@
                                 <tr>
                                     <td>ID</td>
                                     <td>Description</td>
+                                    <td>View</td>
                                 </tr>
                                 </thead>
                                 <tr th:each="recipe : ${recipies}">
                                     <td th:text="${recipe.id}">1</td>
                                     <td th:text="${recipe.description}">A</td>
+                                    <td>
+                                        <a href="#" th:href="@{'/recipe/show/'+${recipe.id}}" th:text="${recipe.id}">View</a>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -46,7 +45,6 @@
 
         </div>
     </div>
-</div>
 </div>
 
 </body>
