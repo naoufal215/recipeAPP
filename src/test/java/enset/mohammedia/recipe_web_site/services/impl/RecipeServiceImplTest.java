@@ -1,5 +1,6 @@
 package enset.mohammedia.recipe_web_site.services.impl;
 
+import enset.mohammedia.recipe_web_site.converters.RecipeCommandToRecipe;
 import enset.mohammedia.recipe_web_site.entities.Recipe;
 import enset.mohammedia.recipe_web_site.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,12 +20,15 @@ class RecipeServiceImplTest {
     private RecipeServiceImpl recipeService;
 
     @Mock
+    private RecipeCommandToRecipe recipeCommandToRecipe;
+
+    @Mock
     private RecipeRepository recipeRepository;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        recipeService= new RecipeServiceImpl(recipeRepository);
+        recipeService= new RecipeServiceImpl(recipeRepository,recipeCommandToRecipe);
     }
 
     @Test

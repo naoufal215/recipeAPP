@@ -2,6 +2,7 @@ package enset.mohammedia.recipe_web_site.controllers;
 
 import enset.mohammedia.recipe_web_site.entities.Recipe;
 import enset.mohammedia.recipe_web_site.services.impl.RecipeServiceImpl;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -42,6 +43,20 @@ class IndexControllerTest {
     }
 
     @Test
+    public void testMVCViewByRecipe() throws Exception {
+        Recipe recipe=new Recipe();
+        long id = 1L;
+        recipe.setId(id);
+        Mockito.when(recipeService.findById(id)).thenReturn(recipe);
+
+        MockMvc mockMvc= MockMvcBuilders.standaloneSetup(indexController).build();
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/show/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("recipeView"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("recipe"));
+    }
+
+    @Test
     void index() {
         Recipe recipe=new Recipe();
         List<Recipe> recipies = new ArrayList<>();
@@ -54,6 +69,22 @@ class IndexControllerTest {
         Mockito.verify(model,Mockito.times(1)).addAttribute(ArgumentMatchers.eq("recipies"),resultOfRecipies.capture());
         List capturedResult=resultOfRecipies.getAllValues();
         assertEquals(1,capturedResult.size());
+        //assertEquals(recipe,capturedResult.get(1));
+    }
+
+    @Test
+    void viewByRecipe() throws Exception {
+        Recipe recipe=new Recipe();
+        long id = 1L;
+        recipe.setId(id);
+        Mockito.when(recipeService.findById(id)).thenReturn(recipe);
+        String result= indexController.viewByRecipe(id,model);
+        assertEquals("recipeView",result);
+        ArgumentCaptor resultOfRecipies=ArgumentCaptor.forClass(Recipe.class);
+        Mockito.verify(recipeService,Mockito.times(1)).findById(id);
+        Mockito.verify(model,Mockito.times(1)).addAttribute(ArgumentMatchers.eq("recipe"),resultOfRecipies.capture());
+        Recipe capturedResult= (Recipe) resultOfRecipies.getValue();
+        assertEquals(capturedResult,recipe);
         //assertEquals(recipe,capturedResult.get(1));
     }
 }
